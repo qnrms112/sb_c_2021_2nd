@@ -39,7 +39,7 @@ public class UsrArticleController {
 			return id + "번 게시물은 존재하지 않습니다.";
 		}
 		
-		return articleService.getArticles();		
+		return articleService.getArticle(id);		
 	}
 	
 	@RequestMapping("/usr/article/doDelete")
