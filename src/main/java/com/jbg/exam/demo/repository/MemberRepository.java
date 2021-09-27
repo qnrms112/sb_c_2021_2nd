@@ -26,12 +26,20 @@ public interface MemberRepository {
 	
 	@Select("SELECT LAST_INSERT_ID()")
 	int getLastInsertId();
-	
+
 	@Select("""
 			SELECT *
 			FROM `member` AS M
 			WHERE M.id = #{id}
 			""")
-	Member getMemberById(@Param("id") int id);
+	Member getMemberById(@Param("id") int Id);
+
+	
+	@Select("""
+			SELECT *
+			FROM `member` AS M
+			WHERE M.loginid = #{loginid}
+			""")
+	Member getMemberByLoginId(@Param("loginid") String loginId);
 
 }
