@@ -18,6 +18,7 @@ public class UsrArticleController {
 	
 	@Autowired
 	private ArticleService articleService;
+	
 	//액션 메서드 시작
 	@RequestMapping("/usr/article/doAdd")
 	@ResponseBody
@@ -30,12 +31,12 @@ public class UsrArticleController {
 			return ResultData.from("F-1","body(을)를 입력해주세요.");	
 		}
 		
-		ResultData writeArticleRd = articleService.writeArticle(title,body);
-		int id = (int)writeArticleRd.getData1();
+		ResultData<Integer> writeArticleRd = articleService.writeArticle(title,body);
+		int id = writeArticleRd.getData1();
 		
 		Article article = articleService.getArticle(id);
 		
-		return ResultData.from(writeArticleRd.getResultCode(), writeArticleRd.getMsg(), article);	
+		return ResultData.newData(writeArticleRd, article);	
 	}
 	
 	@RequestMapping("/usr/article/getArticles")
