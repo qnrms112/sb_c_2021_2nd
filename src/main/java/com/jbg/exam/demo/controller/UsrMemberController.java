@@ -59,6 +59,25 @@ public class UsrMemberController {
 		return ResultData.newData(joinRd, member);
 	}
 	
+	@RequestMapping("/usr/member/doLogout")
+	@ResponseBody
+	public ResultData<Member> doLogout(HttpSession httpsession) {
+		
+		boolean isLogined = false;
+		
+		if (httpsession.getAttribute("loginedMemberId") == null) {
+			isLogined = true;
+		}
+		
+		if (isLogined) {
+			return ResultData.from("S-1", "이미 로그아웃 상태입니다.");
+		}
+		
+		httpsession.removeAttribute("loginedMemberId");
+		
+		return ResultData.from("S-2", "로그아웃 되었습니다.");
+	}
+	
 
 	@RequestMapping("/usr/member/doLogin")
 	@ResponseBody
@@ -70,7 +89,7 @@ public class UsrMemberController {
 			isLogined = true;
 		}
 		
-		if (isLogined = true) {
+		if (isLogined) {
 			return ResultData.from("F-5", "이미 로그인되었습니다.");
 		}
 		
