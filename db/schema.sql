@@ -80,6 +80,13 @@ loginPw = 'user2',
 nickname = '사용자2',
 cellphoneNo = '01011111111',
 email = 'wlvkcjs79@naver.com';
+ 
+#게시물 테이블에 회원정보 추가
+ALTER TABLE article ADD COLUMN memberId INT(10) UNSIGNED NOT NULL AFTER updateDate;
 
-SELECT * FROM `member`
+#기존 게시물의 작성자를 2번회원으로 지정 
+UPDATE article
+SET memberId = 2
+WHERE memberId = 0;
+
 
