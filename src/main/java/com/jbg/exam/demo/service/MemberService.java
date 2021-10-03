@@ -34,17 +34,18 @@ public class MemberService {
 		
 		return ResultData.from("S-1", "회원가입이 완료되었습니다.", id);
 	}
-
-	public Member getMemberById(int id) {
-		return memberRepository.getMemberById(id);
-	}
-	
-	private Member getMemberByLoginId(String loginId) {
-		return memberRepository.getMemberByLoginId(loginId);
-	}
 	
 	private Member getMemberByNameAndEmail(String name, String email) {
 		return memberRepository.getMemberByNameAndEmail(name, email);
 	}
+	
+	public Member getMemberByLoginId(String loginId) {
+		return memberRepository.getMemberByLoginId(loginId);
+	}
+	
+	public Member getMemberById(int id) {
+		return memberRepository.getMemberById(id);
+	}
+	
 
 }
