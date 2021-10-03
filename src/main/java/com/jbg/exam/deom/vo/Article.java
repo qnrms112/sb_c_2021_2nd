@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Article {
 	public int id;
+	private String regDate;
+	private String updateDate;
 	public String title;
 	public String body;
 }
