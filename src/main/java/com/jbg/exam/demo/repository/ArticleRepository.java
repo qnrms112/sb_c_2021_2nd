@@ -10,21 +10,28 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.jbg.exam.deom.vo.Article;
- 
+
 @Mapper
 public interface ArticleRepository {
-	
+
 	public void writeArticle(@Param("memberId") int memberId, @Param("title") String title, @Param("body") String body);
 
 	public Article getArticle(@Param("id") int id);
-	
+
 	public void deleteArticle(@Param("id") int id);
 
 	public void modifyArticle(@Param("id") int id, @Param("title") String title, @Param("body") String body);
-	
+
+	@Select("""
+			SELECT A.*,
+			M.nickname AS extra_writerName
+			FROM article AS A
+			LEFT JOIN member AS M
+			ON A.memberId = M.id
+			ORDER BY A.id DESC
+			""")
 	public List<Article> getArticles();
 
 	public int getLastInsertId();
-
 
 }
