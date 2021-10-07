@@ -15,5 +15,7 @@ public class Article {
 	private int memberId;
 	public String title;
 	public String body;
-	public String extra__writerName;
+	
+	private String extra__writerName;
+	private boolean extra__actorCanDelete;
 }
