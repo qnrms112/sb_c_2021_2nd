@@ -33,7 +33,6 @@ public class UsrArticleController {
 			return ResultData.from("F-A", "로그인 후 입력해주세요.");
 		}
 		
-
 		if (Ut.empty(title)) {
 			return ResultData.from("F-1", "title(을)를 입력해주세요.");
 		}
