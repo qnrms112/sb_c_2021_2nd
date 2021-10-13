@@ -10,10 +10,6 @@ public class ResultData<DT> {
 	@Getter
 	private DT data1;
 	
-	public ResultData() {
-		// TODO Auto-generated constructor stub
-	}
-	
 	public static ResultData from(String resultCode, String msg) {
 		return from(resultCode, msg, null);
 	}
