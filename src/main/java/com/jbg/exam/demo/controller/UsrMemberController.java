@@ -1,5 +1,6 @@
 package com.jbg.exam.demo.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import com.jbg.exam.demo.service.MemberService;
 import com.jbg.exam.demo.util.Ut;
 import com.jbg.exam.deom.vo.Member;
 import com.jbg.exam.deom.vo.ResultData;
+import com.jbg.exam.deom.vo.Rq;
 
 @Controller
 public class UsrMemberController {
@@ -85,15 +87,11 @@ public class UsrMemberController {
 
 	@RequestMapping("/usr/member/doLogin")
 	@ResponseBody
-	public String doLogin(HttpSession httpsession, String loginId, String loginPw) {
+	public String doLogin(HttpServletRequest req, String loginId, String loginPw) {
+		
+		Rq rq =(Rq)req.getAttribute("rq");
 
-		boolean isLogined = false;
-
-		if (httpsession.getAttribute("loginedMemberId") != null) {
-			isLogined = true;
-		}
-
-		if (isLogined) {
+		if (rq.isLogined()) {
 			return Ut.jsHistoryBack("이미 로그인 되어있습니다.");
 		}
 
@@ -114,9 +112,9 @@ public class UsrMemberController {
 		if (member.getLoginPw().equals(loginId) == false) {
 			return Ut.jsHistoryBack("비밀번호가 일치하지 않습니다.");
 		}
-
-		httpsession.setAttribute("loginedMemberId", member.getId());
-
+		
+		rq.login(member);
+		
 		return Ut.jsReplace(Ut.f("%s님 환영합니다.", member.getNickname()), "/");
 	}
 
