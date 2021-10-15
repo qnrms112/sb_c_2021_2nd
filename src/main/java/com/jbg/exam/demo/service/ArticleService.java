@@ -74,7 +74,7 @@ public class ArticleService {
 			return ResultData.from("F-2", "권한이 없습니다.");
 		}
 		
-		return ResultData.from("S-1", "수정 가능합니.");
+		return ResultData.from("S-1", "수정 가능합니다.");
 	}
 	
 	public ResultData actorCanDelete(int actorId, Article article) {

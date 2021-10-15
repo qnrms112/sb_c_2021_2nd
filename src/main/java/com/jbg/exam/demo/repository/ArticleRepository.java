@@ -28,7 +28,7 @@ public interface ArticleRepository {
 	public Article getForPrintArticle(@Param("id") int id);
 
 	public void deleteArticle(@Param("id") int id);
-
+	
 	public void modifyArticle(@Param("id") int id, @Param("title") String title, @Param("body") String body);
 
 	@Select("""
