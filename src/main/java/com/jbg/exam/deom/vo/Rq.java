@@ -77,6 +77,14 @@ public class Rq {
 		req.setAttribute("msg", msg);
 		req.setAttribute("historyBack", true);
 		return "common/js";
+	}
+
+	public String jsHistoryBack(String msg) {
+		return Ut.jsHistoryBack(msg);
+	}
+
+	public String jsReplace(String msg, String url) {
+		return Ut.jsReplace(msg, url);
 	} 
 
 }
