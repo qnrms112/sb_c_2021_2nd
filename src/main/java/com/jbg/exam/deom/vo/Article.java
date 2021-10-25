@@ -9,12 +9,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Article {
-	public int id;
+	private int id;
 	private String regDate;
 	private String updateDate;
 	private int memberId;
-	public String title;
-	public String body;
+	private String title;
+	private String body;
 	
 	private String extra__writerName;
 	private boolean extra__actorCanModify;
