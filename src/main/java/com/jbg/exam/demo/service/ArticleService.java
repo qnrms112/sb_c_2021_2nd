@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.jbg.exam.demo.repository.ArticleRepository;
 import com.jbg.exam.demo.util.Ut;
-import com.jbg.exam.deom.vo.Article;
-import com.jbg.exam.deom.vo.ResultData;
+import com.jbg.exam.demo.vo.Article;
+import com.jbg.exam.demo.vo.ResultData;
 
 @Service
 public class ArticleService {
@@ -20,8 +20,8 @@ public class ArticleService {
 	}
 	
 
-	public ResultData writeArticle(int memberId, String title, String body) {
-		articleRepository.writeArticle(memberId, title, body);
+	public ResultData writeArticle(int memberId, int boardId, String title, String body) {
+		articleRepository.writeArticle(memberId, boardId, title, body);
 		int id = articleRepository.getLastInsertId();
 	
 		return ResultData.from("S-1", Ut.f("%d번 게시물이 생성되었습니다.", id), id);	

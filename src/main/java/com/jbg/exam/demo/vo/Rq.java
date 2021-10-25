@@ -1,4 +1,4 @@
-package com.jbg.exam.deom.vo;
+package com.jbg.exam.demo.vo;
 
 import java.io.IOException;
 
@@ -6,11 +6,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Component;
+
 import com.jbg.exam.demo.service.MemberService;
 import com.jbg.exam.demo.util.Ut;
 
 import lombok.Getter;
 
+@Component
+@Scope(value = "request", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class Rq {
 	
 	@Getter
@@ -29,8 +35,8 @@ public class Rq {
 		this.req = req;
 		this.resp = resp;
 		
-		
 		this.session = req.getSession();
+		
 		boolean isLogined = false;
 		int loginedMemberId = 0;
 		Member loginedMember = null;
@@ -44,6 +50,8 @@ public class Rq {
 		this.isLogined = isLogined;
 		this.loginedMemberId = loginedMemberId;
 		this.loginedMember = loginedMember;
+		
+		this.req.setAttribute("rq", this);
 	}
 
 	public void printHistoryBackJs(String msg) {
@@ -85,6 +93,11 @@ public class Rq {
 
 	public String jsReplace(String msg, String url) {
 		return Ut.jsReplace(msg, url);
+	}
+	
+	//이 메서드는 rq객체가 자연스럽게 생성되게 해주는 역할을 함
+	public void initOnBeforeActionInterceptor() {
+		
 	} 
 
 }

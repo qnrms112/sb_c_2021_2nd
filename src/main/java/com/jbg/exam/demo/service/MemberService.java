@@ -4,8 +4,8 @@ import org.springframework.stereotype.Service;
 
 import com.jbg.exam.demo.repository.MemberRepository;
 import com.jbg.exam.demo.util.Ut;
-import com.jbg.exam.deom.vo.Member;
-import com.jbg.exam.deom.vo.ResultData;
+import com.jbg.exam.demo.vo.Member;
+import com.jbg.exam.demo.vo.ResultData;
 
 @Service
 public class MemberService {

@@ -3,7 +3,7 @@ package com.jbg.exam.demo.service;
 import org.springframework.stereotype.Service;
 
 import com.jbg.exam.demo.repository.BoardRepository;
-import com.jbg.exam.deom.vo.Board;
+import com.jbg.exam.demo.vo.Board;
 
 @Service
 public class BoardService {

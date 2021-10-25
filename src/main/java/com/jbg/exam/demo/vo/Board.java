@@ -1,4 +1,4 @@
-package com.jbg.exam.deom.vo;
+package com.jbg.exam.demo.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

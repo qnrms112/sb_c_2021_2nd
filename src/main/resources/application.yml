@@ -14,7 +14,7 @@ spring:
     username: sbsst
     password: sbs123414
 mybatis:
-  type-aliases-package: com.jbg.exam.deom.vo
+  type-aliases-package: com.jbg.exam.demo.vo
 custom:
   logging:
     dir: log

@@ -9,17 +9,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jbg.exam.demo.service.MemberService;
 import com.jbg.exam.demo.util.Ut;
-import com.jbg.exam.deom.vo.Member;
-import com.jbg.exam.deom.vo.ResultData;
-import com.jbg.exam.deom.vo.Rq;
+import com.jbg.exam.demo.vo.Member;
+import com.jbg.exam.demo.vo.ResultData;
+import com.jbg.exam.demo.vo.Rq;
 
 @Controller
 public class UsrMemberController {
 
 	private MemberService memberService;
+	private Rq rq;
 
-	public UsrMemberController(MemberService memberService) {
+	public UsrMemberController(MemberService memberService, Rq rq) {
 		this.memberService = memberService;
+		this.rq = rq;
 	}
 
 	@RequestMapping("/usr/member/doJoin")
@@ -63,9 +65,7 @@ public class UsrMemberController {
 
 	@RequestMapping("/usr/member/doLogout")
 	@ResponseBody
-	public String doLogout(HttpServletRequest req) {
-
-		Rq rq =(Rq)req.getAttribute("rq");
+	public String doLogout() {
 
 		if (!rq.isLogined()) {
 			return rq.jsHistoryBack("이미 로그아웃 상태입니다.");
@@ -77,16 +77,14 @@ public class UsrMemberController {
 	}
 
 	@RequestMapping("/usr/member/login")
-	public String showLogin(HttpSession httpsession) {
+	public String showLogin() {
 		return "usr/member/login";
 	}
 
 	@RequestMapping("/usr/member/doLogin")
 	@ResponseBody
-	public String doLogin(HttpServletRequest req, String loginId, String loginPw) {
+	public String doLogin(String loginId, String loginPw) {
 		
-		Rq rq =(Rq)req.getAttribute("rq");
-
 		if (rq.isLogined()) {
 			return rq.jsHistoryBack("이미 로그인 되어있습니다.");
 		}
