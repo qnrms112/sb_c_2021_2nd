@@ -126,11 +126,12 @@ SET boardId =2
 WHERE id IN (3);
 
 #게시물 개수 늘리기
-INSERT INTO article
+/*
+insert into article
 (
         regDate, updateDate, memberId, boardId, title, `body`
 )
-SELECT NOW(), NOW(), FLOOR(RAND() * 2)+1,FLOOR(RAND() * 2)+1,CONCAT('제목_', RAND()), CONCAT('내용_', RAND())
-FROM article;
-
+select now(), now(), FLOOR(RAND() * 2)+1,FLOOR(RAND() * 2)+1,concat('제목_', rand()), CONCAT('내용_', RAND())
+from article;
+*/
 
