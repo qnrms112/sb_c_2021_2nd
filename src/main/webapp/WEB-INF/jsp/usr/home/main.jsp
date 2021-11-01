@@ -6,8 +6,7 @@
 
 <section class="mt-5">
   <div class="container mx-auto px-3">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-    ut labore et dolore magna aliqua.
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex in animi reiciendis libero reprehenderit excepturi nihil voluptatem. Illo eligendi assumenda quidem iste adipisci dicta reiciendis deleniti distinctio quos temporibus sequi.
    </div>
 </section>
 

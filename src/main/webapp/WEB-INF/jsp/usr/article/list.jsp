@@ -12,8 +12,8 @@
       <div class="badge">${articlesCount}</div>
       건
     </div>
-    <div class="table-box-type-1">
-      <table>
+    <div class = "mt-3">
+      <table class="table table-fixed w-full">
         <colgroup>
           <col width="50" />
           <col width="150" />
@@ -38,7 +38,9 @@
               <td>${article.updateDate.substring(2, 16)}</td>
               <td>${article.extra__writerName}</td>
               <td>
-                <a class="btn-text-link" href="../article/detail?id=${article.id}"> ${article.title} </a>
+                <a class="btn-text-link w-full block truncate" href="../article/detail?id=${article.id}">
+                 ${article.title}
+                </a>
               </td>
             </tr>
           </c:forEach>
