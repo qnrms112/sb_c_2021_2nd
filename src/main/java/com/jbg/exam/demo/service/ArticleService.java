@@ -112,6 +112,11 @@ public class ArticleService {
 		
 		return ResultData.from("S-1", "조회수가 증가 되었습니다.", affectedRowsCount);
 	}
+
+
+	public int getArticleHitCount(int id) {
+		return articleRepository.getArticleHitCount();
+	}
 	
 	
 	
