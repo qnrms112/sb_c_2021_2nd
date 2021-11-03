@@ -24,7 +24,7 @@ public class ArticleService {
 		articleRepository.writeArticle(memberId, boardId, title, body);
 		int id = articleRepository.getLastInsertId();
 	
-		return ResultData.from("S-1", Ut.f("%d번 게시물이 생성되었습니다.", id), id);	
+		return ResultData.from("S-1", Ut.f("%d번 게시물이 생성되었습니다.", id), "id", id);	
 	}
 
 	public List<Article> getForPrintArticles(int actorId, int boardId, String searchKeywordTypeCode, String searchKeyword, int itemsCountInAPage, int page) {
@@ -69,7 +69,7 @@ public class ArticleService {
 		
 		Article article = getForPrintArticle(0, id);
 
-		return ResultData.from("S-1", Ut.f("%d번 게시물을 수정하였습니다.", id), article);
+		return ResultData.from("S-1", Ut.f("%d번 게시물을 수정하였습니다.", id),  "article", article);
 	}
 
 
@@ -106,11 +106,11 @@ public class ArticleService {
 	public ResultData<Integer> increaseHitCount(int id) {
 		int affectedRowsCount = articleRepository.increaseHitCount(id);
 		
-		if(affectedRowsCount == 0) {
-			return ResultData.from("F-1", "해당 게시물이 존재하지 않습니다.", affectedRowsCount);
+		if (affectedRowsCount == 0) {
+			return ResultData.from("F-1", "해당 게시물이 존재하지 않습니다.", "affectedRowsCount", affectedRowsCount);
 		}
-		
-		return ResultData.from("S-1", "조회수가 증가 되었습니다.", affectedRowsCount);
+
+		return ResultData.from("S-1", "조회수가 증가되었습니다.", "affectedRowsCount", affectedRowsCount);
 	}
 
 

@@ -2,6 +2,7 @@ package com.jbg.exam.demo.controller;
 
 import java.util.List;
 
+import org.springframework.jdbc.object.RdbmsOperation;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -75,7 +76,11 @@ public class UsrArticleController {
 			 return increaseHitCountRd;
 		 }
 		 
-		 return ResultData.newData(increaseHitCountRd, "hitCount", articleService.getArticleHitCount(id));
+		 ResultData<Integer> rd = ResultData.newData(increaseHitCountRd, "hitCount", articleService.getArticleHitCount(id));
+		 
+		 rd.setData2("id", id); 
+		 
+		 return rd;
 	}
 
 	@RequestMapping("/usr/article/getArticle")
