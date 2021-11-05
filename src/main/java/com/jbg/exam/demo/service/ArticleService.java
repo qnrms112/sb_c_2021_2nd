@@ -115,7 +115,7 @@ public class ArticleService {
 
 
 	public int getArticleHitCount(int id) {
-		return articleRepository.getArticleHitCount();
+		return articleRepository.getArticleHitCount(id);
 	}
 	
 	
