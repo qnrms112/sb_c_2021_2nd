@@ -12,7 +12,7 @@ import com.jbg.exam.demo.vo.Rq;
 public class NeedLoginInterceptor implements HandlerInterceptor {
 	private Rq rq;
 	
-	public NeedLoginInterceptor() {
+	public NeedLoginInterceptor(Rq rq) {
 		this.rq = rq;
 	}
 	
