@@ -94,16 +94,16 @@ CREATE TABLE board (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     regDate DATETIME NOT NULL,
     updateDate DATETIME NOT NULL,
-    `code` CHAR(50) NOT NULL UNIQUE COMMENT 'notice(공지사항),free1(자유게시판1),free2(자유게시판2), ...',
+    `code` CHAR(50) not null unique comment 'notice(공지사항),free1(자유게시판1),free2(자유게시판2), ...',
     `name` CHAR(50) NOT NULL UNIQUE COMMENT '게시판이름',
     delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '삭제여부 (0=삭제전, 1=삭제)',
     delDate DATETIME COMMENT '탈퇴날짜'
 );
 
 # 기본 게시판 생성
-INSERT INTO board
-SET regdate = NOW(),
-updateDate = NOW(),
+insert into board
+set regdate = now(),
+updateDate = now(),
 `code` = 'notice',
 `name` = '공지사항';
 
@@ -114,12 +114,12 @@ updateDate = NOW(),
 `name` = '자유';
 
 #게시판 테이블에 boardId 칼럼 추가
-ALTER TABLE article ADD COLUMN boardId INT(10) UNSIGNED NOT NULL AFTER memberId;
+alter table article add column boardId int(10) unsigned not null after memberId;
 
 #기존 게시물에 강제로 게시판 정보 넣기
-UPDATE article
-SET boardId =1
-WHERE id IN (1,2);
+update article
+set boardId =1
+where id in (1,2);
 
 UPDATE article
 SET boardId =2
@@ -136,11 +136,11 @@ from article;
 */
 
 # 게시물 테이블 hitCount 칼럼을 추가
-ALTER TABLE article
-ADD COLUMN hitCount INT(10) UNSIGNED NOT NULL DEFAULT 0;
+alter table article
+add column hitCount int(10) unsigned not null default 0;
 
 # like 테이블
-CREATE TABLE reactionPoint (
+create table reactionPoint (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     regDate DATETIME NOT NULL,
     updateDate DATETIME NOT NULL,
@@ -197,5 +197,5 @@ relTypeCode = 'article',
 relId = 1,
 `point` = 1;
 
-
-
+select *
+from reactionPoint
