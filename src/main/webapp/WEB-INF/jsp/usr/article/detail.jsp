@@ -10,32 +10,30 @@
 </script>
 
 <script>
-function ArticleDetail__increaseHitCount() {
-	
-	const localStorageKey = 'article__' + params.id + '__viewDone'
-	
-	if ( localStorage.getItem(localStorageKey) ) {
-		return;
-	}
-	
-	localStorage.setItem(localStorageKey,true);
-	
-	$.get(
-		'../article/doIncreaseHitCountRd',
-		{
-			id: params.id
-		}, function(data){
+	function ArticleDetail__increaseHitCount() {
+
+		const localStorageKey = 'article__' + params.id + '__viewDone'
+
+		if (localStorage.getItem(localStorageKey)) {
+			return;
+		}
+
+		localStorage.setItem(localStorageKey, true);
+
+		$.get('../article/doIncreaseHitCountRd', {
+			id : params.id
+		}, function(data) {
 			$('.article-detail__hit-count').empty().html(data.data1);
 		}, 'json');
-}
+	}
 
-$(function() {
-	// 실전
-	// ArticleDetail__increaseHitCount();
+	$(function() {
+		// 실전
+		// ArticleDetail__increaseHitCount();
 
-	//임시
-	setTimeout(ArticleDetail__increaseHitCount(), 500);
-})
+		//임시
+		setTimeout(ArticleDetail__increaseHitCount(), 500);
+	})
 </script>
 
 <section class="mt-5">
@@ -74,7 +72,21 @@ $(function() {
           <tr>
             <th>추천</th>
             <td>
-              <span class="badge badge-secondary">${article.extra__goodreactionPoint}</span>
+              <div class="flex items-center">
+                <span class="badge badge-secondary">${article.extra__goodreactionPoint}</span>
+                <span>&nbsp;</span>
+                <c:if test="${actorCanMakeReactionPoint}">
+                  <button class="btn btn-xs btn-primary">
+                  좋아요
+                  👍
+                  </button>
+                  <span>&nbsp;</span>
+                  <button class="btn btn-xs btn-secondary">
+                  싫어요
+                  👎
+                  </button>
+                </c:if>
+              </div>
             </td>
           </tr>
           <tr>
