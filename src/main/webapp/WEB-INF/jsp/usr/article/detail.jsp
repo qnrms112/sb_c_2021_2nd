@@ -66,9 +66,15 @@ $(function() {
             <td>${article.extra__writerName}</td>
           </tr>
           <tr>
-            <th>조회수</th>
+            <th>조회</th>
             <td>
               <span class="badge badge-secondary article-detail__hit-count">${article.hitCount}</span>
+            </td>
+          </tr>
+          <tr>
+            <th>추천</th>
+            <td>
+              <span class="badge badge-secondary">${article.extra__goodreactionPoint}</span>
             </td>
           </tr>
           <tr>
