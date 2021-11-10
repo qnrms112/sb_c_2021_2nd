@@ -2,7 +2,6 @@ package com.jbg.exam.demo.controller;
 
 import java.util.List;
 
-import org.springframework.jdbc.object.RdbmsOperation;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jbg.exam.demo.service.ArticleService;
 import com.jbg.exam.demo.service.BoardService;
+import com.jbg.exam.demo.service.ReactionPointService;
 import com.jbg.exam.demo.util.Ut;
 import com.jbg.exam.demo.vo.Article;
 import com.jbg.exam.demo.vo.Board;
@@ -22,11 +22,13 @@ public class UsrArticleController {
 
 	private ArticleService articleService;
 	private BoardService boardService;
+	private ReactionPointService reactionPointService;
 	private Rq rq;
 
-	public UsrArticleController(ArticleService articleService, BoardService boardService, Rq rq) {
+	public UsrArticleController(ArticleService articleService, BoardService boardService, ReactionPointService reactionPointService, Rq rq) {
 		this.articleService = articleService;
 		this.boardService = boardService;
+		this.reactionPointService = reactionPointService;
 		this.rq = rq;
 	}
 
@@ -64,7 +66,7 @@ public class UsrArticleController {
 
 		model.addAttribute("article", article);
 		
-		boolean actorCanMakeReactionPoint = articleService.actorCanMakeReactionPoint(rq.getLoginedMemberId(), id);
+		boolean actorCanMakeReactionPoint = reactionPointService.actorCanMakeReactionPoint(rq.getLoginedMemberId(), "article", id);
 		
 		model.addAttribute("actorCanMakeReactionPoint", actorCanMakeReactionPoint);
 
