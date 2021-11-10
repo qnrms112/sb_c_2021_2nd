@@ -95,6 +95,21 @@ public class Rq {
 		return Ut.jsReplace(msg, url);
 	}
 	
+	public String getCurrentUri() {
+		String currentUri = req.getRequestURI();
+        String queryString = req.getQueryString();
+
+        if (queryString != null && queryString.length() > 0) {
+            currentUri += "?" + queryString;
+        }
+        
+        return currentUri;
+	}
+	
+	public String getEncodedCurrentUri() {
+		return Ut.getUriEncoded(getCurrentUri());
+	}
+	
 	//이 메서드는 rq객체가 자연스럽게 생성되게 해주는 역할을 함
 	public void initOnBeforeActionInterceptor() {
 		
