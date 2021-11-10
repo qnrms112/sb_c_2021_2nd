@@ -41,7 +41,7 @@
           <tr>
             <th>추천</th>
             <td>
-              <span class="badge badge-secondary">${article.extra__goodreactionPoint}</span>
+              <span class="badge badge-secondary">${article.egoodreactionPoint}</span>
             </td>
           </tr>
           <tr>

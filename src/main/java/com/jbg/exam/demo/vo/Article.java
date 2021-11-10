@@ -16,10 +16,9 @@ public class Article {
 	private String title;
 	private String body;
 	private int hitCount;
+	private int goodreactionPoint;
+	private int badreactionPoint;
 	
-	private int extra__sumreactionPoint;
-	private int extra__goodreactionPoint;
-	private int extra__badreactionPoint;
 	private String extra__writerName;
 	private boolean extra__actorCanModify;
 	private boolean extra__actorCanDelete;
