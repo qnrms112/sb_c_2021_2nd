@@ -80,6 +80,10 @@ public class Rq {
 	public void logout() {
 		session.removeAttribute("loginedMemberId");
 	}
+	
+	public boolean isNotLogined() {
+		return !isLogined;
+	}
 
 	public String historyBackJsOnView(String msg) {
 		req.setAttribute("msg", msg);
