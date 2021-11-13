@@ -5,35 +5,59 @@
 <%@ include file="../common/head.jspf"%>
 
 <script>
-	const params = {};
-	params.id = parseInt('${param.id}');
+  const params = {};
+  params.id = parseInt('${param.id}');
 </script>
 
 <script>
-	function ArticleDetail__increaseHitCount() {
+  function ArticleDetail__increaseHitCount() {
 
-		const localStorageKey = 'article__' + params.id + '__viewDone'
+    const localStorageKey = 'article__' + params.id + '__viewDone'
 
-		if (localStorage.getItem(localStorageKey)) {
-			return;
-		}
+    if (localStorage.getItem(localStorageKey)) {
+      return;
+    }
 
-		localStorage.setItem(localStorageKey, true);
+    localStorage.setItem(localStorageKey, true);
 
-		$.get('../article/doIncreaseHitCountRd', {
-			id : params.id
-		}, function(data) {
-			$('.article-detail__hit-count').empty().html(data.data1);
-		}, 'json');
-	}
+    $.get('../article/doIncreaseHitCountRd', {
+      id : params.id
+    }, function(data) {
+      $('.article-detail__hit-count').empty().html(data.data1);
+    }, 'json');
+  }
 
-	$(function() {
-		// 실전
-		// ArticleDetail__increaseHitCount();
+  $(function() {
+    // 실전
+    // ArticleDetail__increaseHitCount();
 
-		//임시
-		setTimeout(ArticleDetail__increaseHitCount(), 500);
-	})
+    //임시
+    setTimeout(ArticleDetail__increaseHitCount(), 500);
+  })
+</script>
+
+<script>
+  // 댓글작성 관련
+  let ReplyWrite__submitFormDone = false;
+  function ReplyWrite__submitForm(form) {
+    if (ReplyWrite__submitFormDone) {
+      return;
+    }
+    //좌우공백 제거
+    form.body.value = form.body.value.trim();
+    if ( form.body.value.length == 0) {
+      alert("댓글을 입력해주세요.");
+      form.body.focus();
+      return;
+    }
+    if ( form.body.value.length < 2) {
+      alert("댓글내용을 2자 이상 입력해주세요.");
+      form.body.focus();
+      return;
+    }
+    ReplyWrite__submitFormDone = ture;
+    form.submit();
+  }
 </script>
 
 <section class="mt-5">
@@ -138,7 +162,8 @@
     <h1>댓글작성</h1>
     <span>&nbsp;</span>
     <c:if test="${rq.logined}">
-      <form class="table-box-type-1" method="POST" action="../reply/doWrite">
+      <form class="table-box-type-1" method="POST" action="../reply/doWrite"
+        onsubmit="ReplyWrite__submitForm(this); return false;">
         <input type="hidden" name="relTypeCode" value="article" />
         <input type="hidden" name="relId" value="${article.id}" />
         <table>
@@ -153,7 +178,7 @@
             <tr>
               <th>내용</th>
               <td>
-                <textarea required="required" class="w-full textarea textarea-bordered" name="body" rows="5"
+                <textarea class="w-full textarea textarea-bordered" name="body" rows="5"
                   placeholder="내용"></textarea>
               </td>
             </tr>
