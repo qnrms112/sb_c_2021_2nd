@@ -36,30 +36,6 @@
   })
 </script>
 
-<script>
-  // 댓글작성 관련
-  let ReplyWrite__submitFormDone = false;
-  function ReplyWrite__submitForm(form) {
-    if (ReplyWrite__submitFormDone) {
-      return;
-    }
-    //좌우공백 제거
-    form.body.value = form.body.value.trim();
-    if ( form.body.value.length == 0) {
-      alert("댓글을 입력해주세요.");
-      form.body.focus();
-      return;
-    }
-    if ( form.body.value.length < 2) {
-      alert("댓글내용을 2자 이상 입력해주세요.");
-      form.body.focus();
-      return;
-    }
-    ReplyWrite__submitFormDone = ture;
-    form.submit();
-  }
-</script>
-
 <section class="mt-5">
   <div class="container mx-auto px-3">
     <div class="table-box-type-1">
@@ -157,6 +133,30 @@
   </div>
 </section>
 
+<script>
+  // 댓글작성 관련
+  let ReplyWrite__submitFormDone = false;
+  function ReplyWrite__submitForm(form) {
+    if (ReplyWrite__submitFormDone) {
+      return;
+    }
+    //좌우공백 제거
+    form.body.value = form.body.value.trim();
+    if (form.body.value.length == 0) {
+      alert("댓글을 입력해주세요.");
+      form.body.focus();
+      return;
+    }
+    if (form.body.value.length < 2) {
+      alert("댓글내용을 2자 이상 입력해주세요.");
+      form.body.focus();
+      return;
+    }
+    ReplyWrite__submitFormDone = ture;
+    form.submit();
+  }
+</script>
+
 <section class="mt-5">
   <div class="container mx-auto px-3">
     <h1>댓글작성</h1>
@@ -178,8 +178,7 @@
             <tr>
               <th>내용</th>
               <td>
-                <textarea class="w-full textarea textarea-bordered" name="body" rows="5"
-                  placeholder="내용"></textarea>
+                <textarea class="w-full textarea textarea-bordered" name="body" rows="5" placeholder="내용"></textarea>
               </td>
             </tr>
             <tr>
@@ -196,9 +195,12 @@
       <a href="/usr/member/login" class="link link-primary">로그인</a> 후 이용해주세요.
     </c:if>
   </div>
+</section>
 
-
-
+<section class="mt-5">
+  <div class="container mx-auto px-3">
+    <h1>댓글 리스트(${repliesCount})</h1>
+  </div>
 </section>
 
 <%@ include file="../common/foot.jspf"%>
