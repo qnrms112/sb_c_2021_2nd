@@ -14,6 +14,7 @@ public class Reply {
 	private int memberId;
 	private String relTypeCode;
 	private String relId;
+	private String body;
 	private int repliceCount;
 	private int goodreactionPoint;
 	private int badreactionPoint;
@@ -36,5 +37,9 @@ public class Reply {
 	
 	public String getForPrintType2UpdateDate() {
 		return updateDate.substring(2, 16);
+	}
+	
+	public String getforPrintBody() {
+		return body.replaceAll("\n", "<br>");
 	}
 }
