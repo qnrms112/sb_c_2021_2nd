@@ -92,7 +92,7 @@ public class ArticleService {
 			return ResultData.from("F-2", "권한이 없습니다.");
 		}
 
-		return ResultData.from("S-1", "삭제 가능합니.");
+		return ResultData.from("S-1", "삭제 가능합니다.");
 	}
 
 	public int getArticlesCount(int boardId, String searchKeywordTypeCode, String searchKeyword) {
