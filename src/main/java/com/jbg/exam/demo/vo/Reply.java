@@ -13,7 +13,7 @@ public class Reply {
 	private String updateDate;
 	private int memberId;
 	private String relTypeCode;
-	private String relId;
+	private int relId;
 	private String body;
 	private int repliceCount;
 	private int goodreactionPoint;

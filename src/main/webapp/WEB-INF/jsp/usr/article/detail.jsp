@@ -231,11 +231,13 @@
             <td>${reply.goodreactionPoint}</td>
             <td>${reply.extra__writerName}</td>
             <td>
-              <c:if test="${reply.extra__actorCanModify}">
-                <a class="btn btn-link" href="../reply/modify?id=${reply.id}">수정</a>
+               <c:if test="${reply.extra__actorCanModify}">
+                <a class="btn btn-link"
+                  href="../reply/modify?id=${reply.id}">수정</a>
               </c:if>
               <c:if test="${reply.extra__actorCanDelete}">
-                <a class="btn btn-link" onclick="if (confirm('정말 삭제하시겠습니까?') == false) return false;"
+                <a class="btn btn-link"
+                  onclick="if ( confirm('정말 삭제하시겠습니까?') == false ) return false;"
                   href="../reply/doDelete?id=${reply.id}">삭제</a>
               </c:if>
             </td>

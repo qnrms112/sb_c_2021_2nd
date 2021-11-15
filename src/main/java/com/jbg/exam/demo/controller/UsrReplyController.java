@@ -4,9 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.jbg.exam.demo.service.ReactionPointService;
 import com.jbg.exam.demo.service.ReplyService;
 import com.jbg.exam.demo.util.Ut;
+import com.jbg.exam.demo.vo.Reply;
 import com.jbg.exam.demo.vo.ResultData;
 import com.jbg.exam.demo.vo.Rq;
 
@@ -24,7 +24,6 @@ public class UsrReplyController {
 	@RequestMapping("/usr/reply/doWrite")
 	@ResponseBody
 	public String doWrite(String relTypeCode, int relId, String body, String replaceUri) {
-
 		if (Ut.empty(relTypeCode)) {
 			return rq.jsHistoryBack("relTypeCode(을)를 입력해주세요.");
 		}
@@ -48,7 +47,33 @@ public class UsrReplyController {
 			}
 		}
 
-		return rq.jsReplace(Ut.f(writeReplyRd.getMsg(), id), replaceUri);
+		return rq.jsReplace(writeReplyRd.getMsg(), replaceUri);
 	}
+	
+	@RequestMapping("/usr/reply/doDelete")
+	@ResponseBody
+	public String doWrite(int id, String replaceUri) {
+		if (Ut.empty(id)) {
+			return rq.jsHistoryBack("id(을)를 입력해주세요.");
+		}
 
+		Reply reply = replyService.getReply(id);
+
+		if (reply == null) {
+			return rq.jsHistoryBack(Ut.f("%d번 댓글은 존재하지 않습니다.", id));
+		}
+
+
+		ResultData deleteReplyRd = replyService.deleteReply(id);
+
+		if (Ut.empty(replaceUri)) {
+			switch (reply.getRelTypeCode()) {
+			case "article":
+				replaceUri = Ut.f("../article/detail?id=%d", reply.getRelId());
+				break;
+			}
+		}
+
+		return rq.jsReplace(deleteReplyRd.getMsg(), replaceUri);
+	}
 }
