@@ -18,19 +18,18 @@ import lombok.Getter;
 @Component
 @Scope(value = "request", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class Rq {
-	
+
 	@Getter
 	private boolean isLogined;
 	@Getter
 	private int loginedMemberId;
 	@Getter
 	private Member loginedMember;
-	
 
 	private HttpServletRequest req;
 	private HttpServletResponse resp;
 	private HttpSession session;
-	
+
 	public Rq(HttpServletRequest req, HttpServletResponse resp, MemberService memberService) {
 		this.req = req;
 		this.resp = resp;
@@ -54,23 +53,29 @@ public class Rq {
 		this.req.setAttribute("rq", this);
 	}
 
+	public void printReplaceJs(String msg, String url) {
+		resp.setContentType("text/html; charset=UTF-8");
+
+		print(Ut.jsReplace(msg, url));
+	}
+
 	public void printHistoryBackJs(String msg) {
 		resp.setContentType("text/html; charset=UTF-8");
-		
+
 		print(Ut.jsHistoryBack(msg));
 	}
-	
+
 	public void print(String str) {
 		try {
 			resp.getWriter().append(str);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	public void println(String str) {
-		print (str + "\n");
+		print(str + "\n");
 	}
 
 	public void login(Member member) {
@@ -80,7 +85,7 @@ public class Rq {
 	public void logout() {
 		session.removeAttribute("loginedMemberId");
 	}
-	
+
 	public boolean isNotLogined() {
 		return !isLogined;
 	}
@@ -98,30 +103,25 @@ public class Rq {
 	public String jsReplace(String msg, String url) {
 		return Ut.jsReplace(msg, url);
 	}
-	
+
 	public String getCurrentUri() {
 		String currentUri = req.getRequestURI();
-        String queryString = req.getQueryString();
+		String queryString = req.getQueryString();
 
-        if (queryString != null && queryString.length() > 0) {
-            currentUri += "?" + queryString;
-        }
-        
-        return currentUri;
+		if (queryString != null && queryString.length() > 0) {
+			currentUri += "?" + queryString;
+		}
+
+		return currentUri;
 	}
-	
+
 	public String getEncodedCurrentUri() {
 		return Ut.getUriEncoded(getCurrentUri());
 	}
-	
-	//이 메서드는 rq객체가 자연스럽게 생성되게 해주는 역할을 함
+
+	// 이 메서드는 rq객체가 자연스럽게 생성되게 해주는 역할을 함
 	public void initOnBeforeActionInterceptor() {
-		
-	} 
+
+	}
 
 }
-
-
-
-
-

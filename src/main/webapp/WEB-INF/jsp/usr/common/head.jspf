@@ -49,7 +49,6 @@
           <span>작성</span>
           </a>
         </li>
-        
         <li>
           <a class="h-full flex px-3 items-center hover:underline" href="/usr/article/list?boardId=1">
           <span>공지사항 게시판</span>
