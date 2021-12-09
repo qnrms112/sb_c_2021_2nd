@@ -41,11 +41,11 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
 		ir.addPathPatterns("/usr/member/DoCheckPassword");
 		ir.addPathPatterns("/usr/member/modify");
 		ir.addPathPatterns("/usr/member/DoModify");
-		ir.addPathPatterns("/usr/reply/wirte");
+		ir.addPathPatterns("/usr/reply/write");
 		ir.addPathPatterns("/usr/reply/doModify");
 		ir.addPathPatterns("/usr/reply/doWrite");
 		ir.addPathPatterns("/usr/reply/doDelete");
-		ir.addPathPatterns("/usr/article/wirte");
+		ir.addPathPatterns("/usr/article/write");
 		ir.addPathPatterns("/usr/article/doWrite");
 		ir.addPathPatterns("/usr/article/modify");
 		ir.addPathPatterns("/usr/article/doModify");
