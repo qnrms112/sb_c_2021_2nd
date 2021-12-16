@@ -199,7 +199,7 @@
       </form>
     </c:if>
     <c:if test="${rq.notLogined}">
-      <a href="/usr/member/login" class="link link-primary">로그인</a> 후 이용해주세요.
+      <a href="${rq.loginUri}" class="link link-primary">로그인</a> 후 이용해주세요.
     </c:if>
   </div>
 </section>
