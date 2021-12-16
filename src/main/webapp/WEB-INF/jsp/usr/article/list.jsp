@@ -57,7 +57,7 @@
               <td>${article.goodreactionPoint}</td>
               <td>${article.extra__writerName}</td>
               <td>
-                <a class="btn-text-link w-full block truncate" href="../article/detail?id=${article.id}">
+                <a class="btn-text-link w-full block truncate" href="${rq.getArticleDetailUriFormArticleList(article)}">
                   ${article.title} </a>
               </td>
             </tr>
