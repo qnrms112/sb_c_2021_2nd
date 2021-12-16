@@ -140,7 +140,7 @@ public class Rq {
 		case "/usr/member/join":
 		case "/usr/member/findloginId":
 		case "/usr/member/findloginPw":
-			return Ut.getUriEncoded(paramMap.get("afterLoginUri"));
+			return Ut.getUriEncoded(Ut.getStrAttr(paramMap , "afterLoginUri", ""));
 		}
 		
 		return getEncodedCurrentUri();
