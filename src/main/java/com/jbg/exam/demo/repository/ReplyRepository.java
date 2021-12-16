@@ -69,5 +69,5 @@ public interface ReplyRepository {
 			`body` = #{body}
 			WHERE id = #{id}
 			""")
-	void modifyReplyRd(int id, String body);
+	void modifyReply(int id, String body);
 }

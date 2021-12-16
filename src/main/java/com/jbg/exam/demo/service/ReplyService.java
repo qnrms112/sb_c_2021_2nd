@@ -51,7 +51,7 @@ public class ReplyService {
 	}
 
 	private ResultData actorCanModify(Member actor, Reply reply) {
-		if (reply == null) {
+		if (actor == null) {
 			return ResultData.from("F-1", "댓글이 존재하지 않습니다.");
 		}
 
@@ -63,7 +63,7 @@ public class ReplyService {
 	}
 
 	private ResultData actorCanDelete(Member actor, Reply reply) {
-		if (reply == null) {
+		if (actor == null) {
 			return ResultData.from("F-1", "댓글이 존재하지 않습니다.");
 		}
 
@@ -93,7 +93,7 @@ public class ReplyService {
 	}
 
 	public ResultData modifyReplyRd(int id, String body) {
-		replyRepository.modifyReplyRd(id, body);
+		replyRepository.modifyReply(id, body);
 
 		return ResultData.from("S-1", Ut.f("%d번 댓글을 수정하였습니다.", id));
 	}
